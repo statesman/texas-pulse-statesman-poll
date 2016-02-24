@@ -6,10 +6,10 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <?php
       $meta = array(
-        'title' => 'Texas Pulse/Statesman poll 2/23/2016',
-        'description' => 'POLL: Cruz leading Trump in Texas, Clinton with a big lead on Sanders. A new Texas Pulse/Statesman poll has the latest data ahead of Super Tuesday.',
+        'title' => 'Cruz, Clinton lead Texas going into primary',
+        'description' => 'A new Texas Pulse/Statesman poll surveys likely voters ahead of Super Tuesday.',
         "apple_touch_icon" => "http://media.cmgdigital.com/shared/theme-assets/242014/www.statesman.com_fa2d2d6e73614535b997734c7e7d2287.png",
-        'thumbnail' => 'assets/share.png',
+        'thumbnail' => 'http://projects.statesman.com/news/texas-pulse-poll/assets/share.png',
         'url' => 'http://projects.statesman.com/news/texas-pulse-poll/',
         'twitter' => 'statesman'
       );

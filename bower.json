@@ -1,0 +1,25 @@
+{
+  "name": "texas-pulse-poll",
+  "version": "0.0.0",
+  "authors": [
+    "Cody Winchester <cjwinchester@gmail.com>"
+  ],
+  "main": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.3.0",
+    "font-awesome": "~4.2.0",
+    "highcharts": "~4.1.4",
+    "underscore": "~1.8.3",
+  },
+  "resolutions": {
+    "underscore": "~1.8.3",
+  }
+}

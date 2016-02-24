@@ -1,5 +1,5 @@
 {
-  "name": "texas-pulse-poll",
+  "name": "texaspulsepoll",
   "version": "0.0.0",
   "authors": [
     "Cody Winchester <cjwinchester@gmail.com>"
@@ -17,9 +17,9 @@
     "bootstrap": "~3.3.0",
     "font-awesome": "~4.2.0",
     "highcharts": "~4.1.4",
-    "underscore": "~1.8.3",
+    "underscore": "~1.8.3"
   },
   "resolutions": {
-    "underscore": "~1.8.3",
+    "underscore": "~1.8.3"
   }
 }

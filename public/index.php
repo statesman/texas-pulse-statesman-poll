@@ -584,7 +584,6 @@
 </div>
 <% }; %>
 
-
 <% if ( _.has(v.responses[0], "issue_ts") && _.has(v.responses[0], "issue_ej") && _.has(v.responses[0], "issue_e") && _.has(v.responses[0], "issue_t") && _.has(v.responses[0], "issue_ib") && _.has(v.responses[0], "issue_h") && _.has(v.responses[0], "issue_s") ) { %>
 
 <div class="ct_table issue col-xs-12" style="padding:0;">

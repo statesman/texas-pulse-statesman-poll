@@ -1,49 +1,3 @@
-/*var key = {
-    lv: "All likely voters surveyed",
-    age_18_39: "18-39",
-    age_40_64: "40-64",
-    age_o65: "65+",
-    sex_m: "Men",
-    sex_f: "Women",
-    income_u30: "Under $30,000",
-    income_30_50: "$30K-$50K",
-    income_50_100: "$50K-$100K",
-    income_100_200: "$100K-$200K",
-    income_o200: "$200K+",
-    income_ns: "Not sure",
-    race_w: "White",
-    race_b: "Black",
-    race_h: "Hispanic",
-    race_o: "Other",
-    edu_ahs: "Attended high school",
-    edu_ghs: "Graduated high school",
-    edu_ac: "Attended college",
-    edu_gc: "Graduated college",
-    edu_gs: "Graduate school",
-    married_n: "No",
-    married_y: "Yes",
-    children_n: "No",
-    children_y: "Yes",
-    party_r: "Republicans",
-    party_d: "Democrats",
-    party_o: "Other",
-    ideology_c: "Conservative",
-    ideology_l: "Liberal",
-    ideology_m: "Moderate",
-    ideology_ns: "Not sure",
-    issue_ts: "Taxes and spending",
-    issue_ej: "Economy and jobs",
-    issue_e: "Education",
-    issue_t: "Transportation",
-    issue_ib: "Immigration and border security",
-    issue_h: "Health care",
-    issue_s: "Social issues",
-    issue_o: "Other",
-    issue_ns: "Not sure"
-};
-
-*/
-
 var demo = {
     gop: {
         total: 620,
@@ -78,26 +32,35 @@ var demo = {
     }
 };
 
-var data_url = 'data/topline.json';
+var data_url = 'data/questions.json';
 var $out_div = $("#poll_output");
 
-// set global template variable
 _.templateSettings.variable = "template_data";
 
-// fetch template for main div
 var template = _.template($( "script.template" ).html());
 
 var getPct = function(fl) {
     return (fl * 100).toFixed(0);
 };
 
-var should_sort = function(i, ls_of_arrays) {
+var should_sort = function(i, ls_of_arrays, sorter) {
     var no_sort = [5, 6, 7, 8];
     if (_.indexOf(no_sort, +i, true) < 0) {
-        return _.sortBy(ls_of_arrays, function(m,n) { return _.values(m)[0]; } ).reverse();
+        return _.sortBy(ls_of_arrays, sorter).reverse();
     } else {
         return ls_of_arrays;
     }
+};
+
+var count_items = function(list_of_arrs, str) {
+    var counter = 0;
+    var keys = _.keys(list_of_arrs[0]);
+    _.each(keys, function(d) {
+        if (d.indexOf(str) > -1) {
+            counter++;
+        }
+    });
+    return counter;
 };
 
 var init = function(data) {
@@ -108,9 +71,10 @@ var init = function(data) {
             if (party === "dem") {
                 data_out.data = d.dem;
                 data_out.party = "dem";
-                data_out.hed = "Likely Democratic voters";
+                data_out.hed = "Democrats";
                 data_out.barcolor = "steelblue";
-                data_out.chat = "<div class='row'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.dem.total + " likely Democratic voters in Texas.</div><div class='col-xs-12 col-md-6'><a href='#' class='btn btn-danger btn-sm' role='button' id='to_gop'>See survey results from likely Republican voters.</a></div></div>";
+                data_out.accent = "#d7e4ef";
+                data_out.chat = "<div class='row' style='margin-bottom:-80px;'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.dem.total + " likely Democratic voters in Texas.</div><div class='col-xs-12 col-md-6'><a href='#' class='btn btn-danger btn-sm' role='button' id='to_gop'>See survey results from likely Republican voters</a></div></div>";
 
                 $out_div.html(template(data_out));
 
@@ -118,18 +82,61 @@ var init = function(data) {
                     e.preventDefault();
                     swapData("gop");
                 });
+
+                $(".label-crosstab").on("click", function() {
+                    var $t = $(this);
+                    $(".label-crosstab").each(function() {
+                        $(this).removeClass("label-dem")
+                               .addClass("label-lite");
+                    });
+
+                    $t.addClass("label-dem");
+
+                    var target = $t.attr('data-attr');
+
+                    var $crosstab_tables = $t.siblings("div.crosstab_tables")
+                                                  .children('div.ct_table');
+
+                    var target_table = $crosstab_tables.filter("div." + target);
+
+                    $crosstab_tables.hide();
+                    target_table.show();
+                });
+
             } else {
                 data_out.data = d.gop;
                 data_out.party = "gop";
-                data_out.hed = "Likely Republican voters";
+                data_out.hed = "Republicans";
                 data_out.barcolor = "#d9534f";
-                data_out.chat = "<div class='row'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.gop.total + " likely Republican voters in Texas.</div><div class='col-xs-12 col-md-6'><a href='#' class='btn btn-primary btn-sm' role='button' id='to_dem' style='background-color: steelblue;'>See survey results from likely Democratic voters.</a></div></div>";
+                data_out.accent = "#f1c0bf";
+                data_out.chat = "<div class='row' style='margin-bottom:-80px;'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.gop.total + " likely Republican voters in Texas.</div><div class='col-xs-12 col-md-6'><a href='#' class='btn btn-primary btn-sm' role='button' id='to_dem' style='background-color: steelblue;'>See survey results from likely Democratic voters</a></div></div>";
 
                 $out_div.html(template(data_out));
 
                 $("#to_dem").on('click', function(e) {
                     e.preventDefault();
                     swapData("dem");
+                });
+
+                $(".label-crosstab").on("click", function() {
+                    var $t = $(this);
+                    $(".label-crosstab").each(function() {
+                        $(this).removeClass("label-gop")
+                               .addClass("label-lite");
+                    });
+
+                    $t.addClass("label-gop");
+
+                    var target = $t.attr('data-attr');
+
+                    var $crosstab_tables = $t.siblings("div.crosstab_tables")
+                                                  .children('div.ct_table');
+
+                    var target_table = $crosstab_tables.filter("div." + target);
+
+                    $crosstab_tables.hide();
+                    target_table.show();
+
                 });
             }
         };
@@ -146,34 +153,3 @@ var init = function(data) {
 $(document).ready(function() {
     init(data_url);
 });
-
-
-
-/*
-
-data
-
-{
-    "demo": {
-        "gender": {
-            "women": 0.4,
-            "men": 0.8
-        },
-        "age": {
-
-        },
-        "race": {
-
-        },
-        "party": {
-
-        }
-    },
-    "questions": [
-        {""}
-    ]
-}
-
-
-
-*/

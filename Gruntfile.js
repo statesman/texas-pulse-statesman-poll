@@ -82,7 +82,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['src/js/**/*.js'],
-        tasks: ['jshint', 'clean:js']
+        tasks: ['jshint', 'clean:js', 'uglify']
       },
       styles: {
         files: ['src/css/**.less'],
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
           authKey: 'cmg'
         },
         src: 'public',
-        dest: '/prod_aas/projects/news/texas-pulse-statesman-poll',
+        dest: '/prod_aas/projects/news/texas-pulse-statesman-poll-new',
         exclusions: ['dist/tmp','Thumbs.db', '.DS_Store'],
         simple: true,
         useList: false

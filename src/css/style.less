@@ -27,14 +27,6 @@ h3.subhed {
   }
 }
 
-// For static popovers
-.popover.popover-static {
-  position: relative;
-  display: block;
-  width: 260px;
-  margin: 20px;
-}
-
 @media (min-width: @screen-sm-min) {
   .navbar.navbar-default {
     border-color: #ddd;
@@ -111,16 +103,62 @@ p.author {
     height:100%;
 }
 
-.results {
-    margin-top:50px;
+div.results {
+    margin-top:150px;
+}
+
+.label {
+    font-family: @font-family-sans-serif;
+    font-weight:normal;
+    margin:3px;
+    float:left;
+    cursor: pointer;
+}
+
+.label-big {
+    font-size:110%;
+}
+
+.label-lite {
+    background-color: #eee;
+    color: black;
+}
+
+.label-gop {
+    background-color: #d9534f;
+    color: white;
+}
+
+.label-dem {
+    background-color: steelblue;
+    color: white;
 }
 
 .ital {
     font-style: italic;
 }
 
-.label {
+h3.crosstab_hed {
+    font-size: 14px;
     font-family: @font-family-sans-serif;
-    margin:3px;
-    float:left;
+    text-transform: uppercase;
+    font-weight:700;
+    margin-top:10px;
+}
+
+th.r, td.r {
+    text-align:left;
+}
+
+.notouch {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ct_table {
+    display:none;
 }

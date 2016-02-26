@@ -99,7 +99,7 @@ module.exports = function(grunt) {
           authKey: 'cmg'
         },
         src: 'public',
-        dest: '/stage_aas/projects/news/texas-pulse-poll',
+        dest: '/stage_aas/projects/news/texas-pulse-statesman-poll',
         exclusions: ['dist/tmp','Thumbs.db', '.DS_Store'],
         simple: true,
         useList: false
@@ -111,7 +111,7 @@ module.exports = function(grunt) {
           authKey: 'cmg'
         },
         src: 'public',
-        dest: '/prod_aas/projects/news/texas-pulse-statesman-poll-new',
+        dest: '/prod_aas/projects/news/texas-pulse-statesman-poll',
         exclusions: ['dist/tmp','Thumbs.db', '.DS_Store'],
         simple: true,
         useList: false

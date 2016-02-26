@@ -74,13 +74,18 @@ var init = function(data) {
                 data_out.hed = "Democrats";
                 data_out.barcolor = "steelblue";
                 data_out.accent = "#d7e4ef";
-                data_out.chat = "<div class='row' style='margin-bottom:-80px;'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.dem.total + " likely Democratic voters in Texas.</div><div class='col-xs-12 col-md-6'><a href='#' class='btn btn-danger btn-sm' role='button' id='to_gop'>See survey results from likely Republican voters</a></div></div>";
+                data_out.chat = "<div class='row' style='margin-bottom:-80px;'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.dem.total + " likely Democratic voters in Texas.</div><div class='col-xs-12 col-md-6'><div class='btn-group' role='group' aria-label='...'><button type='button' class='btn btn-default btn-sm' id='to_gop'>Republicans</button><button type='button' class='btn btn-dems btn-sm' id='to_dem'>Democrats</button></div></div></div>";
 
                 $out_div.html(template(data_out));
 
                 $("#to_gop").on('click', function(e) {
                     e.preventDefault();
                     swapData("gop");
+                });
+
+                $("#to_dem").on('click', function(e) {
+                    e.preventDefault();
+                    swapData("dem");
                 });
 
                 $(".label-crosstab").on("click", function() {
@@ -109,13 +114,18 @@ var init = function(data) {
                 data_out.hed = "Republicans";
                 data_out.barcolor = "#d9534f";
                 data_out.accent = "#f1c0bf";
-                data_out.chat = "<div class='row' style='margin-bottom:-80px;'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.gop.total + " likely Republican voters in Texas.</div><div class='col-xs-12 col-md-6'><a href='#' class='btn btn-primary btn-sm' role='button' id='to_dem' style='background-color: steelblue;'>See survey results from likely Democratic voters</a></div></div>";
+                data_out.chat = "<div class='row' style='margin-bottom:-80px;'><div class='col-xs-12 col-md-6' style='margin-bottom:10px;'>Responses from " + demo.gop.total + " likely Republican voters in Texas.</div><div class='col-xs-12 col-md-6'><div class='btn-group' role='group' aria-label='...'><button type='button' class='btn btn-danger btn-sm' id='to_gop'>Republicans</button><button type='button' class='btn btn-default btn-sm' id='to_dem'>Democrats</button></div></div></div>";
 
                 $out_div.html(template(data_out));
 
                 $("#to_dem").on('click', function(e) {
                     e.preventDefault();
                     swapData("dem");
+                });
+
+                $("#to_gop").on('click', function(e) {
+                    e.preventDefault();
+                    swapData("gop");
                 });
 
                 $(".label-crosstab").on("click", function() {

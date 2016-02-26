@@ -112,7 +112,7 @@
                       <p style="margin-top:20px;">Click to show responses by ...</p>
 
                       <% if ( _.has(v.responses[0], "age_18_39") && _.has(v.responses[0], "age_40_64") && _.has(v.responses[0], "age_o65") ) { %>
-                      <span class="label label-crosstab label-big label-lite notouch" data-attr="age">age</span>
+                      <span class="label label-crosstab label-big label-<% if (template_data.party === 'dem') { %>dem<% } else { %>gop<% }; %> notouch" data-attr="age">age</span>
                       <% }; %>
                       <% if ( _.has(v.responses[0], "race_w") && _.has(v.responses[0], "race_o") ) { %>
                       <span class="label label-crosstab label-big label-lite notouch" data-attr="race">race</span>
@@ -136,7 +136,7 @@
                       <span class="label label-crosstab label-big label-lite notouch" data-attr="married">marital status</span>
                       <% }; %>
                       <% if ( _.has(v.responses[0], "children_y") && _.has(v.responses[0], "children_n") ) { %>
-                      <span class="label label-crosstab label-big label-lite notouch" data-attr="children">child-havin'</span>
+                      <span class="label label-crosstab label-big label-lite notouch" data-attr="children">family status</span>
                       <% }; %>
                       <% if ( _.has(v.responses[0], "voted_y") && _.has(v.responses[0], "voted_n") ) { %>
                       <span class="label label-crosstab label-big label-lite notouch" data-attr="voted">early voting status</span>
@@ -153,7 +153,7 @@
 
 
 <% if ( _.has(v.responses[0], "age_18_39") && _.has(v.responses[0], "age_40_64") && _.has(v.responses[0], "age_o65") ) { %>
-<div class="ct_table age col-xs-12" style="padding:0;">
+<div class="ct_table age col-xs-12" style="padding:0; display:inline;">
       <h3 class="crosstab_hed">By age</h3>
       <table class="table table-condensed">
           <thead>
@@ -255,6 +255,7 @@
 
 <div class="ct_table income col-xs-12" style="padding:0;">
       <h3 class="crosstab_hed">By income</h3>
+      <div class="table-responsive">
       <table class="table table-condensed">
           <thead>
               <tr>
@@ -291,6 +292,7 @@
               <% }); %>
           </tbody>
       </table>
+  </div>
 
 </div>
 
@@ -301,6 +303,7 @@
 <% if ( _.has(v.responses[0], "edu_ahs") && _.has(v.responses[0], "edu_ghs") && _.has(v.responses[0], "edu_ac") && _.has(v.responses[0], "edu_gc") && _.has(v.responses[0], "edu_gs") ) { %>
 <div class="ct_table education col-xs-12" style="padding:0;">
       <h3 class="crosstab_hed">By education</h3>
+      <div class="table-responsive">
       <table class="table table-condensed">
           <thead>
               <tr>
@@ -337,6 +340,7 @@
               <% }); %>
           </tbody>
       </table>
+  </div>
 
 </div>
 
@@ -538,6 +542,7 @@
 
 <div class="ct_table primary col-xs-12" style="padding:0;">
       <h3 class="crosstab_hed">By primary reason for supporting candidate</h3>
+<div class="table-responsive">
       <table class="table table-condensed">
           <thead>
               <tr>
@@ -574,6 +579,7 @@
               <% }); %>
           </tbody>
       </table>
+  </div>
 
 </div>
 <% }; %>
@@ -583,6 +589,7 @@
 
 <div class="ct_table issue col-xs-12" style="padding:0;">
       <h3 class="crosstab_hed">By response to "What is the most important issue facing Texas today?"</h3>
+      <div class="table-responsive">
       <table class="table table-condensed">
           <thead>
               <tr>
@@ -625,6 +632,7 @@
               <% }); %>
           </tbody>
       </table>
+  </div>
 
 </div>
 
